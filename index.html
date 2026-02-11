@@ -446,10 +446,8 @@
 
 <script>
 (function() {
-  var BREVO_API_KEY = 'YOUR_BREVO_API_KEY_HERE';
-  var LIST_ID = 13;
-  var TEMPLATE_ID = 4;
-  var REDIRECT_URL = 'https://www.grenade.tw/subscribe-success/';
+  /* API 金鑰已移至 WordPress 後端代理，前端不再暴露 */
+  var PROXY_URL = 'https://www.grenade.tw/wp-json/grenade/v1/subscribe';
 
   var form = document.getElementById('gnd-form');
   var emailInput = document.getElementById('gnd-email');
@@ -498,32 +496,24 @@
     btn.disabled = true;
     btn.textContent = '提交中...';
 
-    fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
+    fetch(PROXY_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'api-key': BREVO_API_KEY },
-      body: JSON.stringify({
-        email: email,
-        attributes: { FIRSTNAME: name },
-        includeListIds: [LIST_ID],
-        templateId: TEMPLATE_ID,
-        redirectionUrl: REDIRECT_URL
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, name: name })
     })
     .then(function(res) {
-      if (res.status === 201 || res.status === 204) {
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-      } else {
-        return res.json().then(function(data) {
-          if (data.code === 'duplicate_parameter') {
-            form.style.display = 'none';
-            successMsg.innerHTML = '&#10003; 你已經訂閱過囉！請檢查信箱是否有確認信。';
-            successMsg.style.display = 'block';
-          } else {
-            throw new Error(data.message || '訂閱失敗');
-          }
-        });
-      }
+      return res.json().then(function(data) {
+        if (res.ok && data.code === 'success') {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else if (data.code === 'duplicate') {
+          form.style.display = 'none';
+          successMsg.innerHTML = '&#10003; 你已經訂閱過囉！請檢查信箱是否有確認信。';
+          successMsg.style.display = 'block';
+        } else {
+          throw new Error(data.message || '訂閱失敗');
+        }
+      });
     })
     .catch(function(err) {
       errorMsg.textContent = err.message || '發生錯誤，請稍後再試';
