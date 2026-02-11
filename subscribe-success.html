@@ -1,0 +1,294 @@
+<!--
+  Grenade 訂閱成功頁面 — 明亮主題，符合 grenade.tw 網站風格
+  使用方式：
+  1. 在 WordPress 建立頁面，slug 設為 "subscribe-success"
+  2. 使用一般 Elementor 頁面模板（保留 Header/Footer）
+  3. 新增「自訂 HTML」區塊，貼入此程式碼
+  4. 發布 → 網址 https://www.grenade.tw/subscribe-success/
+-->
+
+<style>
+  /* ===== Reset ===== */
+  #gnd-success-page * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ===== 頁面容器 ===== */
+  #gnd-success-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+    background-color: #ffffff;
+    color: #121212;
+  }
+
+  /* ===== Hero 區域 ===== */
+  #gnd-success-page .gnd-hero {
+    text-align: center;
+    padding: clamp(40px, 6vw, 72px) 24px clamp(20px, 3vw, 36px);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  #gnd-success-page .gnd-hero img {
+    width: 90px;
+    margin-bottom: 28px;
+  }
+  /* 成功 check 動畫 */
+  #gnd-success-page .gnd-check-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(35, 164, 85, 0.08);
+    border: 3px solid #23A455;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    animation: gndPulse 2s ease-in-out infinite;
+  }
+  #gnd-success-page .gnd-check-circle svg {
+    width: 36px;
+    height: 36px;
+    stroke: #23A455;
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @keyframes gndPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(35, 164, 85, 0.2); }
+    50% { box-shadow: 0 0 0 12px rgba(35, 164, 85, 0); }
+  }
+  #gnd-success-page .gnd-hero h1 {
+    font-size: clamp(28px, 1.75rem + 1.25vw, 44px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    color: #121212;
+  }
+  #gnd-success-page .gnd-hero h1 span {
+    color: #23A455;
+  }
+  #gnd-success-page .gnd-hero p {
+    font-size: clamp(15px, 0.94rem + 0.25vw, 17px);
+    color: #69727d;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ===== 主內容區 ===== */
+  #gnd-success-page .gnd-main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ===== PDF 下載卡片 ===== */
+  #gnd-success-page .gnd-pdf-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 36px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  #gnd-success-page .gnd-pdf-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #23A455, #61CE70);
+  }
+  #gnd-success-page .gnd-pdf-tag {
+    display: inline-block;
+    background: rgba(35, 164, 85, 0.1);
+    color: #23A455;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+  }
+  #gnd-success-page .gnd-pdf-card h2 {
+    font-size: clamp(20px, 1.25rem + 0.5vw, 24px);
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #121212;
+  }
+  #gnd-success-page .gnd-pdf-card > p {
+    font-size: 14px;
+    color: #69727d;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  /* PDF 圖片預覽 */
+  #gnd-success-page .gnd-pdf-img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid #f0f0f0;
+  }
+
+  /* 下載按鈕 — 更醒目 */
+  #gnd-success-page .gnd-pdf-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #23A455, #1e8e45);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 18px 56px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: inherit;
+    transition: all 0.4s ease-in-out;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(35, 164, 85, 0.25);
+    letter-spacing: 0.5px;
+  }
+  #gnd-success-page .gnd-pdf-btn:hover {
+    background: linear-gradient(135deg, #1e8e45, #177a3b);
+    box-shadow: 0 6px 24px rgba(35, 164, 85, 0.4);
+    transform: translateY(-2px);
+  }
+  #gnd-success-page .gnd-pdf-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ===== 接下來你會收到 ===== */
+  #gnd-success-page .gnd-next-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  #gnd-success-page .gnd-next-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 20px;
+  }
+  #gnd-success-page .gnd-next-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  #gnd-success-page .gnd-next-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  #gnd-success-page .gnd-next-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(35, 164, 85, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  #gnd-success-page .gnd-next-text {
+    font-size: 14px;
+    color: #69727d;
+    line-height: 1.5;
+  }
+  #gnd-success-page .gnd-next-text strong {
+    color: #121212;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 15px;
+  }
+
+  /* ===== RWD ===== */
+  @media (max-width: 768px) {
+    #gnd-success-page .gnd-hero { padding: 32px 20px 16px; }
+    #gnd-success-page .gnd-pdf-card,
+    #gnd-success-page .gnd-next-card {
+      padding: 28px 24px;
+    }
+    #gnd-success-page .gnd-pdf-btn {
+      padding: 16px 40px;
+      font-size: 16px;
+    }
+  }
+</style>
+
+<div id="gnd-success-page">
+  <!-- Hero -->
+  <div class="gnd-hero">
+    <img src="https://img.mailinblue.com/7628917/images/content_library/original/66d96c57e713f0ebe6d7c37b.PNG" alt="Grenade">
+
+    <div class="gnd-check-circle">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+
+    <h1>訂閱<span>成功</span>！</h1>
+    <p>歡迎加入 Grenade 電子報！你現在可以下載我們為你準備的免費學習資源。</p>
+  </div>
+
+  <!-- 主內容 -->
+  <div class="gnd-main">
+    <!-- PDF 下載卡片 -->
+    <div class="gnd-pdf-card">
+      <span class="gnd-pdf-tag">&#127873; 你的免費資源</span>
+      <h2>加密貨幣卡完全攻略懶人包</h2>
+      <p>感謝訂閱！點擊下方按鈕即可下載你的專屬 PDF 學習資源。</p>
+
+      <img class="gnd-pdf-img" src="https://grenade.tw/wp-content/uploads/2025/12/scimgUR8vLt.webp" alt="加密貨幣卡完全攻略懶人包">
+
+      <a href="https://btc.grenade.tw/IQZBN" target="_blank" class="gnd-pdf-btn">&#11015;&#65039; 立即下載 PDF</a>
+    </div>
+
+    <!-- 接下來你會收到 -->
+    <div class="gnd-next-card">
+      <h3>接下來你會收到什麼？</h3>
+
+      <div class="gnd-next-item">
+        <div class="gnd-next-icon">&#128200;</div>
+        <div class="gnd-next-text">
+          <strong>幣圈與加密貨幣資訊</strong>
+          比特幣、以太坊等主流幣動態與市場趨勢
+        </div>
+      </div>
+
+      <div class="gnd-next-item">
+        <div class="gnd-next-icon">&#128179;</div>
+        <div class="gnd-next-text">
+          <strong>加密卡情報與優惠</strong>
+          最新回饋、開卡優惠與實測比較
+        </div>
+      </div>
+
+      <div class="gnd-next-item">
+        <div class="gnd-next-icon">&#129302;</div>
+        <div class="gnd-next-text">
+          <strong>AI 科技前沿</strong>
+          AI 與區塊鏈交叉應用、最新科技趨勢
+        </div>
+      </div>
+
+      <div class="gnd-next-item">
+        <div class="gnd-next-icon">&#128184;</div>
+        <div class="gnd-next-text">
+          <strong>美股資訊與分析</strong>
+          科技股、加密概念股投資觀點
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,538 @@
+<!--
+  Grenade 訂閱 Landing Page — 明亮主題，符合 grenade.tw 網站風格
+  使用方式：
+  1. 在 WordPress 建立新頁面，slug 設為 "subscribe"
+  2. 使用一般 Elementor 頁面模板（保留 Header/Footer）
+  3. 新增「自訂 HTML」區塊，貼入此程式碼
+  4. 發布 → 網址 https://www.grenade.tw/subscribe/
+-->
+
+<style>
+  /* ===== Reset ===== */
+  #gnd-subscribe * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ===== 頁面容器 ===== */
+  #gnd-subscribe {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+    background-color: #ffffff;
+    color: #121212;
+  }
+
+  /* ===== Hero 區域 ===== */
+  #gnd-subscribe .gnd-hero {
+    text-align: center;
+    padding: clamp(40px, 6vw, 72px) 24px clamp(24px, 3vw, 40px);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  #gnd-subscribe .gnd-hero img {
+    width: 90px;
+    margin-bottom: 28px;
+  }
+  #gnd-subscribe .gnd-hero h1 {
+    font-size: clamp(28px, 1.75rem + 1.25vw, 46px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    color: #121212;
+  }
+  #gnd-subscribe .gnd-hero h1 span {
+    color: #23A455;
+  }
+  #gnd-subscribe .gnd-hero p {
+    font-size: clamp(15px, 0.94rem + 0.25vw, 17px);
+    color: #69727d;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ===== 主內容區 ===== */
+  #gnd-subscribe .gnd-main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* ===== 左欄：權益卡片 ===== */
+  #gnd-subscribe .gnd-benefits-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 36px 32px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  #gnd-subscribe .gnd-benefits-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #121212;
+  }
+  #gnd-subscribe .gnd-benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  #gnd-subscribe .gnd-benefit-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  #gnd-subscribe .gnd-benefit-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(35, 164, 85, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  #gnd-subscribe .gnd-benefit-text h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #121212;
+  }
+  #gnd-subscribe .gnd-benefit-text p {
+    font-size: 13px;
+    color: #69727d;
+    line-height: 1.5;
+  }
+
+  /* 統計數字 */
+  #gnd-subscribe .gnd-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #f0f0f0;
+  }
+  #gnd-subscribe .gnd-stat {
+    text-align: center;
+  }
+  #gnd-subscribe .gnd-stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: #23A455;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  #gnd-subscribe .gnd-stat-label {
+    font-size: 12px;
+    color: #69727d;
+  }
+
+  /* ===== 右欄：表單卡片 ===== */
+  #gnd-subscribe .gnd-form-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 36px 32px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  #gnd-subscribe .gnd-form-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #121212;
+  }
+  #gnd-subscribe .gnd-form-card > p {
+    font-size: 14px;
+    color: #69727d;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  /* 表單欄位 */
+  #gnd-subscribe .gnd-field { margin-bottom: 20px; }
+  #gnd-subscribe .gnd-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 8px;
+  }
+  #gnd-subscribe .gnd-label .req { color: #23A455; }
+  #gnd-subscribe .gnd-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #121212;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.4s ease-in-out;
+  }
+  #gnd-subscribe .gnd-input::placeholder {
+    color: #999999;
+  }
+  #gnd-subscribe .gnd-input:focus {
+    border-color: #23A455;
+    box-shadow: 0 0 0 3px rgba(35, 164, 85, 0.12);
+    background: #ffffff;
+  }
+  #gnd-subscribe .gnd-input.has-error {
+    border-color: #e74c3c;
+  }
+  #gnd-subscribe .gnd-field-hint {
+    font-size: 12px;
+    color: #999;
+    margin-top: 6px;
+  }
+  #gnd-subscribe .gnd-field-error {
+    font-size: 13px;
+    color: #e74c3c;
+    margin-top: 6px;
+    display: none;
+  }
+
+  /* 蜜罐 */
+  #gnd-subscribe .gnd-hp { position: absolute; left: -9999px; }
+
+  /* 送出按鈕 — 更醒目 */
+  #gnd-subscribe .gnd-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #23A455, #1e8e45);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    margin-top: 8px;
+    box-shadow: 0 4px 14px rgba(35, 164, 85, 0.25);
+    letter-spacing: 0.5px;
+  }
+  #gnd-subscribe .gnd-btn:hover {
+    background: linear-gradient(135deg, #1e8e45, #177a3b);
+    box-shadow: 0 6px 24px rgba(35, 164, 85, 0.4);
+    transform: translateY(-2px);
+  }
+  #gnd-subscribe .gnd-btn:active { transform: translateY(0); }
+  #gnd-subscribe .gnd-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* 免費標籤 */
+  #gnd-subscribe .gnd-free-tag {
+    display: inline-block;
+    background: rgba(35, 164, 85, 0.1);
+    color: #23A455;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  /* 訊息 */
+  #gnd-subscribe .gnd-msg {
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    display: none;
+    text-align: center;
+  }
+  #gnd-subscribe .gnd-msg.success {
+    background: rgba(35, 164, 85, 0.08);
+    border: 1px solid #23A455;
+    color: #1e8e45;
+  }
+  #gnd-subscribe .gnd-msg.error {
+    background: rgba(231, 76, 60, 0.08);
+    border: 1px solid #e74c3c;
+    color: #c0392b;
+  }
+
+  #gnd-subscribe .gnd-form-footer {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 16px;
+  }
+
+  /* 贈品預覽 — 含圖片 */
+  #gnd-subscribe .gnd-gift {
+    display: block;
+    background: rgba(35, 164, 85, 0.04);
+    border: 1px solid rgba(35, 164, 85, 0.15);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  #gnd-subscribe .gnd-gift-img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  #gnd-subscribe .gnd-gift-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #23A455;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  #gnd-subscribe .gnd-gift-label small {
+    font-weight: 400;
+    color: #69727d;
+    display: block;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  /* autofill 防護 */
+  #gnd-subscribe .gnd-input:-webkit-autofill,
+  #gnd-subscribe .gnd-input:-webkit-autofill:hover,
+  #gnd-subscribe .gnd-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #121212;
+    -webkit-box-shadow: 0 0 0 1000px #f5f5f5 inset;
+    border: 1px solid #ddd;
+  }
+
+  /* ===== RWD ===== */
+  @media (max-width: 768px) {
+    #gnd-subscribe .gnd-main {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    #gnd-subscribe .gnd-hero { padding: 32px 20px 20px; }
+    #gnd-subscribe .gnd-benefits-card,
+    #gnd-subscribe .gnd-form-card { padding: 28px 24px; }
+  }
+  @media (max-width: 480px) {
+    #gnd-subscribe .gnd-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+    #gnd-subscribe .gnd-stat-num { font-size: 24px; }
+  }
+</style>
+
+<div id="gnd-subscribe">
+  <!-- Hero -->
+  <div class="gnd-hero">
+    <img src="https://img.mailinblue.com/7628917/images/content_library/original/66d96c57e713f0ebe6d7c37b.PNG" alt="Grenade">
+    <h1>訂閱 <span>Grenade</span> 電子報</h1>
+    <p>不定期獲取幣圈趨勢、加密卡優惠、AI 科技前沿與美股分析，訂閱即送免費 PDF 資源。</p>
+  </div>
+
+  <!-- 主內容 -->
+  <div class="gnd-main">
+    <!-- 左欄：權益 -->
+    <div class="gnd-benefits-card">
+      <h3>訂閱可以獲得什麼？</h3>
+
+      <div class="gnd-benefit-item">
+        <div class="gnd-benefit-icon">&#128200;</div>
+        <div class="gnd-benefit-text">
+          <h4>幣圈與加密貨幣資訊</h4>
+          <p>即時掌握比特幣、以太坊等主流幣動態與市場趨勢</p>
+        </div>
+      </div>
+
+      <div class="gnd-benefit-item">
+        <div class="gnd-benefit-icon">&#128179;</div>
+        <div class="gnd-benefit-text">
+          <h4>加密卡情報與優惠</h4>
+          <p>加密貨幣卡最新回饋、開卡優惠與實測比較</p>
+        </div>
+      </div>
+
+      <div class="gnd-benefit-item">
+        <div class="gnd-benefit-icon">&#129302;</div>
+        <div class="gnd-benefit-text">
+          <h4>AI 科技前沿</h4>
+          <p>AI 與區塊鏈交叉應用、最新科技趨勢解讀</p>
+        </div>
+      </div>
+
+      <div class="gnd-benefit-item">
+        <div class="gnd-benefit-icon">&#128184;</div>
+        <div class="gnd-benefit-text">
+          <h4>美股資訊與分析</h4>
+          <p>美股市場動態、科技股與加密概念股投資觀點</p>
+        </div>
+      </div>
+
+      <!-- 統計數字 -->
+      <div class="gnd-stats">
+        <div class="gnd-stat">
+          <div class="gnd-stat-num">6,200+</div>
+          <div class="gnd-stat-label">社群訂閱者</div>
+        </div>
+        <div class="gnd-stat">
+          <div class="gnd-stat-num">600+</div>
+          <div class="gnd-stat-label">電子報會員</div>
+        </div>
+        <div class="gnd-stat">
+          <div class="gnd-stat-num">30+</div>
+          <div class="gnd-stat-label">合作夥伴</div>
+        </div>
+        <div class="gnd-stat">
+          <div class="gnd-stat-num">50+</div>
+          <div class="gnd-stat-label">專題文章</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右欄：表單 -->
+    <div class="gnd-form-card">
+      <span class="gnd-free-tag">FREE</span>
+      <h3>立即免費訂閱</h3>
+      <p>填寫下方資訊，確認信箱後即可獲得免費 PDF 資源。</p>
+
+      <!-- 贈品預覽 -->
+      <div class="gnd-gift">
+        <img class="gnd-gift-img" src="https://grenade.tw/wp-content/uploads/2025/12/scimgUR8vLt.webp" alt="加密貨幣卡完全攻略">
+        <div class="gnd-gift-label">
+          &#127873; 訂閱即送 PDF 加密卡攻略懶人包
+          <small>確認訂閱後立即下載</small>
+        </div>
+      </div>
+
+      <!-- 訊息 -->
+      <div id="gnd-success" class="gnd-msg success">&#10003; 訂閱成功！請到信箱確認訂閱，確認後即可獲得免費 PDF。</div>
+      <div id="gnd-error" class="gnd-msg error"></div>
+
+      <!-- 表單 -->
+      <form id="gnd-form" novalidate>
+        <div class="gnd-field">
+          <label class="gnd-label" for="gnd-email">Email<span class="req"> *</span></label>
+          <input type="email" id="gnd-email" class="gnd-input" placeholder="name@example.com" required>
+          <p class="gnd-field-error" id="gnd-email-err"></p>
+        </div>
+
+        <div class="gnd-field">
+          <label class="gnd-label" for="gnd-name">暱稱<span class="req"> *</span></label>
+          <input type="text" id="gnd-name" class="gnd-input" placeholder="請輸入中文或英文暱稱" required maxlength="200">
+          <p class="gnd-field-error" id="gnd-name-err"></p>
+        </div>
+
+        <!-- 蜜罐 -->
+        <div class="gnd-hp" aria-hidden="true">
+          <input type="text" id="gnd-hp" name="company_url" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="gnd-btn" id="gnd-btn">訂閱 Grenade 電子報</button>
+      </form>
+
+      <p class="gnd-form-footer">免費訂閱 · 隨時取消 · 不會收到垃圾郵件</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var BREVO_API_KEY = 'YOUR_BREVO_API_KEY_HERE';
+  var LIST_ID = 13;
+  var TEMPLATE_ID = 4;
+  var REDIRECT_URL = 'https://www.grenade.tw/subscribe-success/';
+
+  var form = document.getElementById('gnd-form');
+  var emailInput = document.getElementById('gnd-email');
+  var nameInput = document.getElementById('gnd-name');
+  var hpInput = document.getElementById('gnd-hp');
+  var btn = document.getElementById('gnd-btn');
+  var successMsg = document.getElementById('gnd-success');
+  var errorMsg = document.getElementById('gnd-error');
+  var emailErr = document.getElementById('gnd-email-err');
+  var nameErr = document.getElementById('gnd-name-err');
+
+  function showErr(el, errEl, msg) {
+    el.classList.add('has-error');
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+  }
+  function clearErr(el, errEl) {
+    el.classList.remove('has-error');
+    errEl.style.display = 'none';
+  }
+  function validEmail(e) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  }
+
+  emailInput.addEventListener('input', function() { clearErr(emailInput, emailErr); });
+  nameInput.addEventListener('input', function() { clearErr(nameInput, nameErr); });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (hpInput.value) return;
+
+    var email = emailInput.value.trim();
+    var name = nameInput.value.trim();
+    var ok = true;
+
+    clearErr(emailInput, emailErr);
+    clearErr(nameInput, nameErr);
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    if (!email) { showErr(emailInput, emailErr, '請輸入 Email'); ok = false; }
+    else if (!validEmail(email)) { showErr(emailInput, emailErr, 'Email 格式不正確'); ok = false; }
+    if (!name) { showErr(nameInput, nameErr, '請輸入暱稱'); ok = false; }
+    if (!ok) return;
+
+    btn.disabled = true;
+    btn.textContent = '提交中...';
+
+    fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'api-key': BREVO_API_KEY },
+      body: JSON.stringify({
+        email: email,
+        attributes: { FIRSTNAME: name },
+        includeListIds: [LIST_ID],
+        templateId: TEMPLATE_ID,
+        redirectionUrl: REDIRECT_URL
+      })
+    })
+    .then(function(res) {
+      if (res.status === 201 || res.status === 204) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        return res.json().then(function(data) {
+          if (data.code === 'duplicate_parameter') {
+            form.style.display = 'none';
+            successMsg.innerHTML = '&#10003; 你已經訂閱過囉！請檢查信箱是否有確認信。';
+            successMsg.style.display = 'block';
+          } else {
+            throw new Error(data.message || '訂閱失敗');
+          }
+        });
+      }
+    })
+    .catch(function(err) {
+      errorMsg.textContent = err.message || '發生錯誤，請稍後再試';
+      errorMsg.style.display = 'block';
+    })
+    .finally(function() {
+      btn.disabled = false;
+      btn.textContent = '訂閱 Grenade 電子報';
+    });
+  });
+})();
+</script>
