@@ -26,7 +26,7 @@
     margin: 0 auto;
   }
   #gnd-subscribe .gnd-hero img {
-    width: 90px;
+    width: 160px;
     margin-bottom: 28px;
   }
   #gnd-subscribe .gnd-hero h1 {
@@ -59,7 +59,7 @@
     align-items: start;
   }
 
-  /* ===== 左欄：權益卡片 ===== */
+  /* ===== 左欄：表單卡片（手機優先） / 右欄：權益卡片 ===== */
   #gnd-subscribe .gnd-benefits-card {
     background: #ffffff;
     border: 1px solid #e8e8e8;
@@ -133,7 +133,7 @@
     color: #69727d;
   }
 
-  /* ===== 右欄：表單卡片 ===== */
+  /* ===== 表單卡片樣式 ===== */
   #gnd-subscribe .gnd-form-card {
     background: #ffffff;
     border: 1px solid #e8e8e8;
@@ -341,7 +341,51 @@
 
   <!-- 主內容 -->
   <div class="gnd-main">
-    <!-- 左欄：權益 -->
+    <!-- 左欄：表單（手機優先顯示） -->
+    <div class="gnd-form-card">
+      <span class="gnd-free-tag">FREE</span>
+      <h3>立即免費訂閱</h3>
+      <p>填寫下方資訊，確認信箱後即可獲得免費 PDF 資源。</p>
+
+      <!-- 贈品預覽 -->
+      <div class="gnd-gift">
+        <img class="gnd-gift-img" src="https://grenade.tw/wp-content/uploads/2025/12/scimgUR8vLt.webp" alt="加密貨幣卡完全攻略">
+        <div class="gnd-gift-label">
+          &#127873; 訂閱即送 PDF 加密卡攻略懶人包
+          <small>確認訂閱後立即下載</small>
+        </div>
+      </div>
+
+      <!-- 訊息 -->
+      <div id="gnd-success" class="gnd-msg success">&#10003; 訂閱成功！請到信箱確認訂閱，確認後即可獲得免費 PDF。</div>
+      <div id="gnd-error" class="gnd-msg error"></div>
+
+      <!-- 表單 -->
+      <form id="gnd-form" novalidate>
+        <div class="gnd-field">
+          <label class="gnd-label" for="gnd-email">Email<span class="req"> *</span></label>
+          <input type="email" id="gnd-email" class="gnd-input" placeholder="name@example.com" required>
+          <p class="gnd-field-error" id="gnd-email-err"></p>
+        </div>
+
+        <div class="gnd-field">
+          <label class="gnd-label" for="gnd-name">暱稱<span class="req"> *</span></label>
+          <input type="text" id="gnd-name" class="gnd-input" placeholder="請輸入中文或英文暱稱" required maxlength="200">
+          <p class="gnd-field-error" id="gnd-name-err"></p>
+        </div>
+
+        <!-- 蜜罐 -->
+        <div class="gnd-hp" aria-hidden="true">
+          <input type="text" id="gnd-hp" name="company_url" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="gnd-btn" id="gnd-btn">訂閱 Grenade 電子報</button>
+      </form>
+
+      <p class="gnd-form-footer">免費訂閱 · 隨時取消 · 不會收到垃圾郵件</p>
+    </div>
+
+    <!-- 右欄：權益 -->
     <div class="gnd-benefits-card">
       <h3>訂閱可以獲得什麼？</h3>
 
@@ -398,55 +442,22 @@
       </div>
     </div>
 
-    <!-- 右欄：表單 -->
-    <div class="gnd-form-card">
-      <span class="gnd-free-tag">FREE</span>
-      <h3>立即免費訂閱</h3>
-      <p>填寫下方資訊，確認信箱後即可獲得免費 PDF 資源。</p>
-
-      <!-- 贈品預覽 -->
-      <div class="gnd-gift">
-        <img class="gnd-gift-img" src="https://grenade.tw/wp-content/uploads/2025/12/scimgUR8vLt.webp" alt="加密貨幣卡完全攻略">
-        <div class="gnd-gift-label">
-          &#127873; 訂閱即送 PDF 加密卡攻略懶人包
-          <small>確認訂閱後立即下載</small>
-        </div>
-      </div>
-
-      <!-- 訊息 -->
-      <div id="gnd-success" class="gnd-msg success">&#10003; 訂閱成功！請到信箱確認訂閱，確認後即可獲得免費 PDF。</div>
-      <div id="gnd-error" class="gnd-msg error"></div>
-
-      <!-- 表單 -->
-      <form id="gnd-form" novalidate>
-        <div class="gnd-field">
-          <label class="gnd-label" for="gnd-email">Email<span class="req"> *</span></label>
-          <input type="email" id="gnd-email" class="gnd-input" placeholder="name@example.com" required>
-          <p class="gnd-field-error" id="gnd-email-err"></p>
-        </div>
-
-        <div class="gnd-field">
-          <label class="gnd-label" for="gnd-name">暱稱<span class="req"> *</span></label>
-          <input type="text" id="gnd-name" class="gnd-input" placeholder="請輸入中文或英文暱稱" required maxlength="200">
-          <p class="gnd-field-error" id="gnd-name-err"></p>
-        </div>
-
-        <!-- 蜜罐 -->
-        <div class="gnd-hp" aria-hidden="true">
-          <input type="text" id="gnd-hp" name="company_url" tabindex="-1" autocomplete="off">
-        </div>
-
-        <button type="submit" class="gnd-btn" id="gnd-btn">訂閱 Grenade 電子報</button>
-      </form>
-
-      <p class="gnd-form-footer">免費訂閱 · 隨時取消 · 不會收到垃圾郵件</p>
-    </div>
   </div>
 </div>
 
 <script>
 (function() {
-  /* API 金鑰已移至 WordPress 後端代理，前端不再暴露 */
+  /*
+   * 自動偵測環境：
+   * - 在 grenade.tw 上 → 走 WordPress 後端代理（API 金鑰隱藏）
+   * - 本機 / 其他環境 → 直接呼叫 Brevo API（方便測試）
+   */
+  var isProduction = window.location.hostname === 'www.grenade.tw' || window.location.hostname === 'grenade.tw';
+
+  var BREVO_API_KEY = 'PREVIEW_MODE_NO_API_KEY';
+  var LIST_ID = 13;
+  var TEMPLATE_ID = 4;
+  var REDIRECT_URL = 'https://www.grenade.tw/subscribe-success/';
   var PROXY_URL = 'https://www.grenade.tw/wp-json/grenade/v1/subscribe';
 
   var form = document.getElementById('gnd-form');
@@ -470,6 +481,41 @@
   }
   function validEmail(e) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  }
+
+  /* 依環境決定 fetch 方式 */
+  function submitToBrevo(email, name) {
+    if (isProduction) {
+      /* 正式環境：走後端代理，金鑰隱藏 */
+      return fetch(PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, name: name })
+      }).then(function(res) {
+        return res.json().then(function(data) {
+          return { status: res.ok ? (data.code === 'duplicate' ? 'duplicate' : 'success') : 'error', message: data.message };
+        });
+      });
+    } else {
+      /* 本機測試：直接呼叫 Brevo API */
+      return fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'api-key': BREVO_API_KEY },
+        body: JSON.stringify({
+          email: email,
+          attributes: { FIRSTNAME: name },
+          includeListIds: [LIST_ID],
+          templateId: TEMPLATE_ID,
+          redirectionUrl: REDIRECT_URL
+        })
+      }).then(function(res) {
+        if (res.status === 201 || res.status === 204) return { status: 'success' };
+        return res.json().then(function(data) {
+          if (data.code === 'duplicate_parameter') return { status: 'duplicate' };
+          return { status: 'error', message: data.message || '訂閱失敗' };
+        });
+      });
+    }
   }
 
   emailInput.addEventListener('input', function() { clearErr(emailInput, emailErr); });
@@ -496,24 +542,18 @@
     btn.disabled = true;
     btn.textContent = '提交中...';
 
-    fetch(PROXY_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, name: name })
-    })
-    .then(function(res) {
-      return res.json().then(function(data) {
-        if (res.ok && data.code === 'success') {
-          form.style.display = 'none';
-          successMsg.style.display = 'block';
-        } else if (data.code === 'duplicate') {
-          form.style.display = 'none';
-          successMsg.innerHTML = '&#10003; 你已經訂閱過囉！請檢查信箱是否有確認信。';
-          successMsg.style.display = 'block';
-        } else {
-          throw new Error(data.message || '訂閱失敗');
-        }
-      });
+    submitToBrevo(email, name)
+    .then(function(result) {
+      if (result.status === 'success') {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else if (result.status === 'duplicate') {
+        form.style.display = 'none';
+        successMsg.innerHTML = '&#10003; 你已經訂閱過囉！請檢查信箱是否有確認信。';
+        successMsg.style.display = 'block';
+      } else {
+        throw new Error(result.message || '訂閱失敗');
+      }
     })
     .catch(function(err) {
       errorMsg.textContent = err.message || '發生錯誤，請稍後再試';
